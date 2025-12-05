@@ -1,13 +1,16 @@
+@'
 name: Ejercicio 4
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   test-multi-os:
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -16,7 +19,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Ejecutar tests
         run: npm test
@@ -27,3 +30,4 @@ jobs:
       - name: Solo en Linux
         if: runner.os == 'Linux'
         run: echo "Este step solo aparece en Linux"
+'@ | Set-Content -Path .github\workflows\ejercicio4.yml -Encoding utf8
