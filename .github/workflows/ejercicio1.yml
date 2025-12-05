@@ -1,7 +1,10 @@
+@'
 name: Ejercicio 1
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   hello:
@@ -9,7 +12,10 @@ jobs:
     steps:
       - name: Saludar
         run: echo "Hola, mi nombre es Gedsel Ochoa"
+
       - name: Fecha y hora
         run: date
-      - name: Sistema operativo
+
+      - name: Mostrar sistema operativo
         run: echo "Sistema operativo: $RUNNER_OS"
+'@ | Set-Content -Path .github\workflows\ejercicio1.yml -Encoding utf8
