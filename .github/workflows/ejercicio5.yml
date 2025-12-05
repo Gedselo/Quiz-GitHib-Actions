@@ -1,7 +1,10 @@
+@'
 name: Ejercicio 5
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
 
 env:
@@ -9,17 +12,16 @@ env:
   VERSION: "1.0.0"
 
 jobs:
-
   setup:
     runs-on: ubuntu-latest
     outputs:
-      timestamp: ${{ steps.create-ts.outputs.timestamp }}
+      timestamp: ${{ steps.create_ts.outputs.timestamp }}
 
     steps:
       - name: Mostrar info
         run: echo "App: $APP_NAME - Versión: $VERSION"
 
-      - id: create-ts
+      - id: create_ts
         name: Crear timestamp
         run: echo "timestamp=$(date +%s)" >> $GITHUB_OUTPUT
 
@@ -34,7 +36,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - run: npm test
 
@@ -60,3 +62,4 @@ jobs:
           else
             echo "Secret configurada correctamente"
           fi
+'@ | Set-Content -Path .github\workflows\ejercicio5.yml -Encoding utf8
